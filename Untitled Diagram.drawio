@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-13T10:42:52.742Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="1BEOOLX0zzmyTj_8--aP" version="14.0.1" type="github">
+<mxfile host="app.diagrams.net" modified="2020-12-13T10:45:29.925Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="nRdB0TswC-VGLovT3C0f" version="14.0.1" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="1422" dy="803" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -195,11 +195,24 @@
         <mxCell id="3KtKmSdysrP-4wJzGKe_-36" value="+message&#xa;+numberOfPeople&#xa;+Person" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="3KtKmSdysrP-4wJzGKe_-35">
           <mxGeometry y="30" width="160" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="3KtKmSdysrP-4wJzGKe_-37" value="Person" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+        <mxCell id="3KtKmSdysrP-4wJzGKe_-37" value="Person" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="800" y="1360" width="160" height="120" as="geometry" />
         </mxCell>
         <mxCell id="3KtKmSdysrP-4wJzGKe_-38" value="+personName&#xa;+spacecraftName" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="3KtKmSdysrP-4wJzGKe_-37">
           <mxGeometry y="30" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="3KtKmSdysrP-4wJzGKe_-42" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.4;exitY=0.1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontColor=#FF6666;curved=1;" edge="1" parent="1" source="3KtKmSdysrP-4wJzGKe_-40" target="3KtKmSdysrP-4wJzGKe_-37">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1068" y="1360" />
+              <mxPoint x="990" y="1360" />
+              <mxPoint x="990" y="1280" />
+              <mxPoint x="880" y="1280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3KtKmSdysrP-4wJzGKe_-40" value="Opcjonalnie" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fontColor=#FF6666;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="1380" width="120" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
