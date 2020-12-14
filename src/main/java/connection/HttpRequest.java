@@ -9,7 +9,7 @@ public class HttpRequest {
 	private final OkHttpClient client = HttpClient.getClient();
 	
 	private String run(String url) {
-		String httpResponse = null;
+		String httpResponse;
 		Request request = new Request.Builder()
 				.url(url)
 				.build();
@@ -20,9 +20,11 @@ public class HttpRequest {
 				httpResponse = response.body().string();
 			} else {
 				// todo: ask if return string or maybe throw an exception?
-				httpResponse = "Invalid or no response";
+				httpResponse = "Nieprawidłowa odpowiedź serwera lub jej brak";
 			}
-		} catch (IOException ignored) {}
+		} catch (IOException e) {
+			httpResponse = "Nieprawidłowa odpowiedź serwera lub jej brak";
+		}
 		
 		return httpResponse;
 	}
@@ -48,8 +50,8 @@ public class HttpRequest {
 			default -> {
 				return "Niepoprawne zapytanie";
 			}
-			
 		}
+		
 		return run(runString);
 	}
 }
