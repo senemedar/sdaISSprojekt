@@ -2,11 +2,11 @@
 <!DOCTYPE hibernate-configuration SYSTEM "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.httpRequest.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.httpRequest.url">jdbc:mysql://localhost/hibernate</property>
-        <property name="hibernate.httpRequest.username">sqladmin</property>
-        <property name="hibernate.httpRequest.password">31222646</property>
-        <property name="hibernate.httpRequest.pool_size">10</property>
+        <property name="hibernate.issApiCall.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.issApiCall.url">jdbc:mysql://localhost/hibernate</property>
+        <property name="hibernate.issApiCall.username">sqladmin</property>
+        <property name="hibernate.issApiCall.password">31222646</property>
+        <property name="hibernate.issApiCall.pool_size">10</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL57Dialect</property>
