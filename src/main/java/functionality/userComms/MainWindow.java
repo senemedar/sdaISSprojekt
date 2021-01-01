@@ -4,7 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import ISS.database.position.entity.Position;
 import connection.*;
+import functionality.managers.DatabaseManager;
+import functionality.managers.PositionManager;
 
 public class MainWindow {
 	private JPanel mainContainer;
@@ -20,13 +23,8 @@ public class MainWindow {
 		exitButton.addActionListener(e -> System.exit(0));
 		
 		issLocationButton.addActionListener(e -> {
-			
-			try {
-				String response = issApiCall.runRequest(RequestType.CURRENT_LOCATION);
-				outputPane.setText(response);
-			} catch (WrongNumberOfArgumentsException wrongNumberOfArgumentsException) {
-				wrongNumberOfArgumentsException.printStackTrace();
-			}
+			Position currentPosition = DatabaseManager.readLatestPositionFromDatabase();
+			displayPosition(currentPosition);
 		});
 		
 		peopleInSpaceButton.addActionListener(new ActionListener() {
@@ -36,9 +34,13 @@ public class MainWindow {
 			}
 		});
 	}
-	
-	public JPanel getMainContainer() {
-		return mainContainer;
+
+	private void displayPosition(Position position) {
+		
+		String issPosition = "Bierząca pozycja stacji to:" +
+				"\nSzerokość geograficzna: " + position.getLatitude() +
+				"\nDługość geograficzna: " + position.getLongitude();
+		outputPane.setText(issPosition);
 	}
 	
 	public static void startApplication() {

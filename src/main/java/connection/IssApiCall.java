@@ -30,7 +30,7 @@ public class IssApiCall {
 		String runString = null;
 		String returnString = null;
 		switch (requestType) {
-			case CURRENT_LOCATION -> runString = ("http://api.open-notify.org/iss-now.json");
+			case CURRENT_POSITION -> runString = ("http://api.open-notify.org/iss-now.json");
 			
 			case PEOPLE_IN_SPACE -> runString = ("http://api.open-notify.org/astros.json");
 			
