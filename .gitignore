@@ -1,5 +1,5 @@
 target
-compiler.xml
-jarRepositories.xml
-vcs.xml
 git
+.idea/compiler.xml
+.idea/jarRepositories.xml
+.idea/vcs.xml
