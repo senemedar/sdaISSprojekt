@@ -16,12 +16,17 @@ public class PositionManager implements Runnable {
 	}
 	
 	public Position getCurrentPosition() {
-		return DatabaseManager.readLatestPositionFromDatabase();
+		return DatabaseManager.getLatestPositionFromDatabase();
 	}
 
-	public void startIssPositionQuery() {
-		ScheduledExecutorService scheduledIssApiCall = Executors.newSingleThreadScheduledExecutor();
-		scheduledIssApiCall.scheduleWithFixedDelay(this, 0, 10, TimeUnit.SECONDS);
+	public boolean startIssPositionQuery() {
+		try {
+			ScheduledExecutorService scheduledIssApiCall = Executors.newSingleThreadScheduledExecutor();
+			scheduledIssApiCall.scheduleWithFixedDelay(this, 0, 10, TimeUnit.SECONDS);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
 	@Override

@@ -1,5 +1,6 @@
 package functionality.functions;
 
+import functionality.managers.PeopleInSpaceManager;
 import functionality.managers.PositionManager;
 import functionality.userComms.MainWindow;
 
@@ -16,8 +17,11 @@ public class Main {
 //		System.out.println(response);
 		
 		PositionManager positionManager = new PositionManager();
-		positionManager.startIssPositionQuery();
+		Boolean positionStatus = positionManager.startIssPositionQuery();
 		
-		MainWindow.startApplication();
+		PeopleInSpaceManager pisManager = new PeopleInSpaceManager();
+		Boolean peopleInSpaceStatus = pisManager.startIssPositionQuery();
+		
+		MainWindow.startApplication(positionManager, pisManager, positionStatus, peopleInSpaceStatus);
 	}
 }
