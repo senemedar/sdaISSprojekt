@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PositionDaoImpl implements Dao<Position> {
+
     @Override
     public void save(String json){
         Session session = HibernateUtils

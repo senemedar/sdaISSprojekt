@@ -10,7 +10,7 @@ class IssApiCallTest {
 	
 	@Test
 	void runRequestWithCurrentLocation() throws WrongNumberOfArgumentsException {
-		String response = request.runRequest(RequestType.CURRENT_LOCATION);
+		String response = request.runRequest(RequestType.CURRENT_POSITION);
 		
 		assertNotNull(response);
 	}

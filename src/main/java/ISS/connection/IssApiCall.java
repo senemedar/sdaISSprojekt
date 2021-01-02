@@ -6,14 +6,15 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class IssApiCall {
+
 	private final OkHttpClient client = HttpClient.getClient();
 	
 	private String run(String url) throws IOException {
+
 		String httpResponse = null;
 		Request request = new Request.Builder()
 				.url(url)
 				.build();
-	
 
 		Response response = client.newCall(request).execute();
 		if (response.body() != null) {
@@ -30,7 +31,7 @@ public class IssApiCall {
 		String runString = null;
 		String returnString = null;
 		switch (requestType) {
-			case CURRENT_LOCATION -> runString = ("http://api.open-notify.org/iss-now.json");
+			case CURRENT_POSITION -> runString = ("http://api.open-notify.org/iss-now.json");
 			
 			case PEOPLE_IN_SPACE -> runString = ("http://api.open-notify.org/astros.json");
 			
