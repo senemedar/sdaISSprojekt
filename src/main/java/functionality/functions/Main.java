@@ -1,5 +1,6 @@
 package functionality.functions;
 
+import functionality.managers.DatabaseManager;
 import functionality.managers.PeopleInSpaceManager;
 import functionality.managers.PositionManager;
 import functionality.userComms.MainWindow;
@@ -14,5 +15,7 @@ public class Main {
 		boolean peopleInSpaceStatus = pisManager.startIssPositionQuery();
 		
 		MainWindow.startApplication(positionManager, pisManager, positionStatus, peopleInSpaceStatus);
+		
+		System.out.println(Maths.calculateSpeed());
 	}
 }

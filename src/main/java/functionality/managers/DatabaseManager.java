@@ -14,6 +14,14 @@ public class DatabaseManager {
 		
 	}
 	
+	public static Position[] getLast2PositionsFromDatabase() {
+		Position[] positionsArray = new Position[] {};
+		positionsArray[0] = new Position(1609533964L, -18.7746, -132.2104);
+		positionsArray[1] = new Position(1609533164L, -16.6646, -131.2002);
+		
+		return positionsArray;
+	}
+	
 	public static NumberOfAstronauts getPeopleInSpaceFromDatabase() {
 		// TODO: 02/01/2021 dodać implementację czytania ostatniego rekordu astronautów
 		return new NumberOfAstronauts(1609540459L, 5);

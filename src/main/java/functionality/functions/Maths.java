@@ -1,14 +1,18 @@
 package functionality.functions;
+import ISS.database.position.entity.Position;
+import functionality.managers.DatabaseManager;
+
 import java.math.*;
 
 public class Maths {
 public static double calculateSpeed(){
-    double lat1  = 18.0200;
-    double lat2  = 18.2896;
-    double lon1 = -53.1479;
-    double lon2 = -52.9264;
-    double timestamp1 = 1609642633;
-    double timestamp2 = 1609642639;
+    Position[] issPositions = DatabaseManager.getLast2PositionsFromDatabase();
+    double lat1 = issPositions[0].getLatitude(); //18.0200;
+    double lat2 = issPositions[1].getLatitude(); //18.2896;
+    double lon1 = issPositions[0].getLongitude(); //-53.1479;
+    double lon2 = issPositions[1].getLongitude(); //-52.9264;
+    double timestamp1 = issPositions[0].getTimestamp(); //1609642633;
+    double timestamp2 = issPositions[1].getTimestamp(); //1609642639;
 
 
     //Formuła Haversine - Haversine formula Formuła Haversine - https://pl.qaz.wiki/wiki/Haversine_formula
