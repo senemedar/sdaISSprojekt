@@ -32,7 +32,7 @@ public class Main {
 		JsonMapper<Position> positionMapper = new JsonMapper<>();
 		Position position = positionMapper.mapJsonToObject(json,Position.class);
 		Dao<Position> positionDao = new PositionDaoImpl();
-		positionDao.save(json);
+		positionDao.save(position);
 		positionDao.findAll();
 
 

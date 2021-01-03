@@ -2,6 +2,7 @@ package ISS.database.numberofastronauts.daoimpl;
 
 import ISS.database.dao.Dao;
 import ISS.database.numberofastronauts.entity.NumberOfAstronauts;
+import ISS.database.position.entity.Position;
 import ISS.database.utils.HibernateUtils;
 import ISS.json.mapper.JsonMapper;
 import org.hibernate.Session;
@@ -14,21 +15,38 @@ import java.util.List;
 public class NumberOfAstronautsDaoImpl implements Dao<NumberOfAstronauts> {
 
     @Override
-    public void save(String json){
+    public void save(NumberOfAstronauts number){
         Session session = HibernateUtils
                 .getInstance()
                 .getSessionFactory()
                 .getCurrentSession();
         session.beginTransaction();
 
-        JsonMapper<NumberOfAstronauts> mapper = new JsonMapper<>();
-
-        NumberOfAstronauts astronauts = mapper.mapJsonToObject(json,NumberOfAstronauts.class);
-        astronauts.setTimestamp(LocalDate.now().toEpochDay());
-        session.save(astronauts);
+        session.save(number);
 
         session.getTransaction().commit();
         session.close();
+    }
+
+    @Override
+    public NumberOfAstronauts findFromTheEnd(int count) {
+        Session session = HibernateUtils
+                .getInstance()
+                .getSessionFactory()
+                .getCurrentSession();
+        session.beginTransaction();
+
+        NumberOfAstronauts number = null;
+
+        number = session
+                .createQuery("from NumberOfAstronauts order by timestamp desc",NumberOfAstronauts.class)
+                .getResultList()
+                .get(count - 1);
+
+        session.getTransaction().commit();
+        session.close();
+
+        return number;
     }
 
     @Override

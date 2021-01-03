@@ -13,21 +13,38 @@ import java.util.List;
 public class PositionDaoImpl implements Dao<Position> {
 
     @Override
-    public void save(String json){
+    public void save(Position position){
         Session session = HibernateUtils
                 .getInstance()
                 .getSessionFactory()
                 .getCurrentSession();
         session.beginTransaction();
 
-
-        JsonMapper<Position> mapper = new JsonMapper<>();
-        Position position = mapper.mapJsonToObject(json, Position.class);
         session.save(position);
-
 
         session.getTransaction().commit();
         session.close();
+    }
+
+    @Override
+    public Position findFromTheEnd(int count) {
+        Session session = HibernateUtils
+                .getInstance()
+                .getSessionFactory()
+                .getCurrentSession();
+        session.beginTransaction();
+
+        Position position = null;
+
+        position = session
+                .createQuery("from Position order by timestamp desc",Position.class)
+                .getResultList()
+                .get(count - 1);
+
+        session.getTransaction().commit();
+        session.close();
+
+        return position;
     }
 
     @Override
