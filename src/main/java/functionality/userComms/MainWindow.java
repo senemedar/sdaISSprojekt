@@ -2,7 +2,6 @@ package functionality.userComms;
 
 import ISS.database.numberofastronauts.entity.NumberOfAstronauts;
 import ISS.database.position.entity.Position;
-import connection.IssApiCall;
 import functionality.managers.PeopleInSpaceManager;
 import functionality.managers.PositionManager;
 
@@ -13,7 +12,7 @@ import javax.swing.*;
 public class MainWindow {
 	private static PositionManager positionManager;
 	private static PeopleInSpaceManager peopleInSpaceManager;
-	private static StringBuilder servicesStatus = new StringBuilder();
+	private static final StringBuilder servicesStatus = new StringBuilder();
 	
 	private static final JFrame passTimesFrame = new JFrame("Czasy przelotów ISS");
 	private final PassTimes passTimesWindow = new PassTimes();
@@ -29,13 +28,13 @@ public class MainWindow {
 	public MainWindow() {
 		preparePassTimesWindow();
 		outputPane.setText(servicesStatus.toString());
-		System.out.println(servicesStatus.toString());
 		
 		exitButton.addActionListener(e -> System.exit(0));
 		issLocationButton.addActionListener(e -> {
 			Position currentPosition = positionManager.getCurrentPosition();
 			displayPosition(currentPosition);
 		});
+		
 		peopleInSpaceButton.addActionListener(e -> {
 			NumberOfAstronauts numberOfAstronauts = peopleInSpaceManager.getPeopleInSpace();
 			displayAstronauts(numberOfAstronauts);
@@ -45,15 +44,6 @@ public class MainWindow {
 			passTimesFrame.setVisible(true);
 			passTimesFrame.transferFocus();
 		});
-	}
-	
-	private void preparePassTimesWindow() {
-				passTimesFrame.setContentPane(passTimesWindow.getMainContainer());
-				passTimesFrame.setDefaultCloseOperation(passTimesFrame.HIDE_ON_CLOSE);
-				passTimesFrame.pack();
-				passTimesFrame.setLocation(200, 200);
-				passTimesWindow.setMainWindow(this);
-//				passTimesFrame.setVisible(true);
 	}
 	
 	public void closeWindow() {
@@ -82,6 +72,14 @@ public class MainWindow {
 				astronauts.getCount();
 				
 		outputPane.setText(PiS);
+	}
+	
+	private void preparePassTimesWindow() {
+		passTimesFrame.setContentPane(passTimesWindow.getMainContainer());
+		passTimesFrame.setDefaultCloseOperation(passTimesFrame.HIDE_ON_CLOSE);
+		passTimesFrame.pack();
+		passTimesFrame.setLocation(200, 200);
+		passTimesWindow.setMainWindow(this);
 	}
 	
 	public static void startApplication(PositionManager pm, PeopleInSpaceManager pism, boolean positionStatus, boolean pisStatus) {
