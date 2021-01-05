@@ -1,4 +1,4 @@
-package connection;
+package ISS.connection;
 
 public class WrongNumberOfArgumentsException extends Exception {
 	/**

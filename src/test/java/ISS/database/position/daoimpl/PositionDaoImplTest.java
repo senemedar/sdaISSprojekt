@@ -39,7 +39,7 @@ class PositionDaoImplTest {
         Position expectedPosition = mapper.mapJsonToObject(json,Position.class);
 
         //when
-        positionDao.save(json);
+        positionDao.save(expectedPosition);
         Position savedPosition = positionDao.findById(1608206967L);
 
         //then
@@ -51,15 +51,12 @@ class PositionDaoImplTest {
     void findAll() {
         //given
         Position p1 = new Position(123456,10,20);
-        String j1 = mapper.mapObjectToJson(p1);
         Position p2 = new Position(12345,15,25);
-        String j2 = mapper.mapObjectToJson(p2);
         Position p3 = new Position(1234,20,30);
-        String j3 = mapper.mapObjectToJson(p3);
 
-        positionDao.save(j1);
-        positionDao.save(j2);
-        positionDao.save(j3);
+        positionDao.save(p1);
+        positionDao.save(p2);
+        positionDao.save(p3);
         List<Position> expectedList = List.of(p1,p2,p3);
 
         //when
@@ -67,15 +64,14 @@ class PositionDaoImplTest {
 
         //then
         assertEquals(expectedList.size(),positionList.size());
-
-
     }
 
     @Test
     void deleteById() {
         //given
         String json = "{\"message\": \"success\", \"timestamp\": 1608206967, \"iss_position\": {\"latitude\": \"8.9186\", \"longitude\": \"65.3221\"}}";
-        positionDao.save(json);
+        Position position = mapper.mapJsonToObject(json,Position.class);
+        positionDao.save(position);
 
         //when
         positionDao.deleteById(1608206967L);
@@ -83,7 +79,55 @@ class PositionDaoImplTest {
 
         //then
         assertNull(deleted);
-
-
     }
+
+    @Test
+    void find_last_position() {
+        //given
+        Position position1 = new Position();
+        position1.setTimestamp(12345L);
+
+        Position position2 = new Position();
+        position2.setTimestamp(23456L);
+
+        Position position3 = new Position();
+        position3.setTimestamp(34567L);
+
+        positionDao.save(position1);
+        positionDao.save(position2);
+        positionDao.save(position3);
+
+        //when
+        Position last = positionDao.findFromTheEnd(1);
+
+        //then
+        assertEquals(position3,last);
+    }
+
+    @Test
+    void find_penultimate_position() {
+        //given
+        Position position1 = new Position();
+        position1.setTimestamp(12345L);
+
+        Position position2 = new Position();
+        position2.setTimestamp(23456L);
+
+        Position position3 = new Position();
+        position3.setTimestamp(34567L);
+
+        positionDao.save(position1);
+        positionDao.save(position2);
+        positionDao.save(position3);
+
+        //when
+        Position penultimate = positionDao.findFromTheEnd(2);
+
+        //then
+        assertEquals(position2,penultimate);
+    }
+
+
+
+
 }

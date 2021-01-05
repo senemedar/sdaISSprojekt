@@ -1,4 +1,4 @@
-package connection;
+package ISS.connection;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ class IssApiCallTest {
 	
 	@Test
 	void runRequestWithCurrentLocation() throws WrongNumberOfArgumentsException {
-		String response = request.runRequest(RequestType.CURRENT_LOCATION);
+		String response = request.runRequest(RequestType.CURRENT_POSITION);
 		
 		assertNotNull(response);
 	}
