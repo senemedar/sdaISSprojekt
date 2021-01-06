@@ -5,4 +5,6 @@ module ISSstationSDAproject {
 	requires java.desktop;
 	requires org.hibernate.orm.core;
 	requires java.naming;
+	requires net.bytebuddy;
+	opens ISS.functionality.managers;
 }

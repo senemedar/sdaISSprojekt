@@ -1,4 +1,4 @@
-package functionality.userComms;
+package ISS.functionality.userComms;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

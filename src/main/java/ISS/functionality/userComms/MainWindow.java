@@ -1,9 +1,10 @@
-package functionality.userComms;
+package ISS.functionality.userComms;
 
 import ISS.database.numberofastronauts.entity.NumberOfAstronauts;
 import ISS.database.position.entity.Position;
-import functionality.managers.PeopleInSpaceManager;
-import functionality.managers.PositionManager;
+import ISS.functionality.managers.DatabaseManager;
+import ISS.functionality.managers.PeopleInSpaceManager;
+import ISS.functionality.managers.PositionManager;
 
 import javax.swing.*;
 
@@ -12,6 +13,7 @@ import javax.swing.*;
 public class MainWindow {
 	private static PositionManager positionManager;
 	private static PeopleInSpaceManager peopleInSpaceManager;
+	private static DatabaseManager dbManager;
 	private static final StringBuilder servicesStatus = new StringBuilder();
 	
 	private static final JFrame passTimesFrame = new JFrame("Czasy przelotów ISS");
@@ -26,17 +28,18 @@ public class MainWindow {
 //	private final IssApiCall issApiCall = new IssApiCall();
 	
 	public MainWindow() {
+
 		preparePassTimesWindow();
 		outputPane.setText(servicesStatus.toString());
 		
 		exitButton.addActionListener(e -> System.exit(0));
 		issLocationButton.addActionListener(e -> {
-			Position currentPosition = positionManager.getCurrentPosition();
+			Position currentPosition = dbManager.getLastPosition();
 			displayPosition(currentPosition);
 		});
 		
 		peopleInSpaceButton.addActionListener(e -> {
-			NumberOfAstronauts numberOfAstronauts = peopleInSpaceManager.getPeopleInSpace();
+			NumberOfAstronauts numberOfAstronauts = dbManager.getLastNumberOfAstronauts();
 			displayAstronauts(numberOfAstronauts);
 		});
 		
@@ -82,7 +85,8 @@ public class MainWindow {
 		passTimesWindow.setMainWindow(this);
 	}
 	
-	public static void startApplication(PositionManager pm, PeopleInSpaceManager pism, boolean positionStatus, boolean pisStatus) {
+	public static void startApplication(PositionManager pm, PeopleInSpaceManager pism, DatabaseManager dbm, boolean positionStatus, boolean pisStatus) {
+		dbManager = dbm;
 		positionManager = pm;
 		peopleInSpaceManager = pism;
 		

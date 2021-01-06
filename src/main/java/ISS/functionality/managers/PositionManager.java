@@ -3,7 +3,6 @@ package ISS.functionality.managers;
 import ISS.connection.IssApiCall;
 import ISS.connection.RequestType;
 import ISS.connection.WrongNumberOfArgumentsException;
-import ISS.database.position.entity.Position;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
