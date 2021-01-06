@@ -20,7 +20,4 @@ public class SpeedManager {
         return Maths.calculateSpeed(lat1,lon1,lat2,lon2,timestamp1,timestamp2);
     }
 
-
-
-
 }

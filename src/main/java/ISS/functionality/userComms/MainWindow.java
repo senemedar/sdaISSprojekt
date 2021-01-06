@@ -5,14 +5,18 @@ import ISS.database.position.entity.Position;
 import ISS.functionality.managers.DatabaseManager;
 import ISS.functionality.managers.PeopleInSpaceManager;
 import ISS.functionality.managers.PositionManager;
+import ISS.functionality.managers.SpeedManager;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 //import ISS.database.position.entity.*;
 
 public class MainWindow {
 	private static PositionManager positionManager;
 	private static PeopleInSpaceManager peopleInSpaceManager;
+	private static SpeedManager speedManager;
 	private static DatabaseManager dbManager;
 	private static final StringBuilder servicesStatus = new StringBuilder();
 	
@@ -24,7 +28,8 @@ public class MainWindow {
 	private JButton passTimesButton;
 	private JButton exitButton;
 	private JTextPane outputPane;
-	
+	private JButton button_showSpeed;
+
 //	private final IssApiCall issApiCall = new IssApiCall();
 	
 	public MainWindow() {
@@ -46,6 +51,11 @@ public class MainWindow {
 		passTimesButton.addActionListener(e -> {
 			passTimesFrame.setVisible(true);
 			passTimesFrame.transferFocus();
+		});
+		
+		button_showSpeed.addActionListener(e -> {
+			double currentSpeed = speedManager.getSpeed();
+			outputPane.setText(String.valueOf(currentSpeed));
 		});
 	}
 	
@@ -85,10 +95,11 @@ public class MainWindow {
 		passTimesWindow.setMainWindow(this);
 	}
 	
-	public static void startApplication(PositionManager pm, PeopleInSpaceManager pism, DatabaseManager dbm, boolean positionStatus, boolean pisStatus) {
+	public static void startApplication(PositionManager pm, PeopleInSpaceManager pism, DatabaseManager dbm, SpeedManager sm, boolean positionStatus, boolean pisStatus) {
 		dbManager = dbm;
 		positionManager = pm;
 		peopleInSpaceManager = pism;
+		speedManager = sm;
 		
 		servicesStatus.append("Usługa pobierania pozycji: ");
 		if (positionStatus)

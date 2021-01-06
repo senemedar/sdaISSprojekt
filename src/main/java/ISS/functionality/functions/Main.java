@@ -46,7 +46,7 @@ public class Main {
 		PeopleInSpaceManager pisManager = new PeopleInSpaceManager();
 		boolean peopleInSpaceStatus = pisManager.startIssPositionQuery();
 
-		MainWindow.startApplication(positionManager, pisManager, dbManager, positionStatus, peopleInSpaceStatus);
+		MainWindow.startApplication(positionManager, pisManager, dbManager, speedManager, positionStatus, peopleInSpaceStatus);
 
 		System.out.println(speedManager.getSpeed());
 

@@ -33,10 +33,10 @@ public class PeopleInSpaceManager implements Runnable{
         } catch (WrongNumberOfArgumentsException e) {
             e.printStackTrace();
         }
-        /*DatabaseManager.saveAstronautsIntoDatabase(response);*/
+//        DatabaseManager.saveAstronautsIntoDatabase(response);
     }
 
-/*    public NumberOfAstronauts getPeopleInSpace() {
-        return DatabaseManager.getPeopleInSpaceFromDatabase();
-    }*/
+//    public NumberOfAstronauts getPeopleInSpace() {
+//        return DatabaseManager.getPeopleInSpaceFromDatabase();
+//    }
 }
