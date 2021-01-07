@@ -3,6 +3,7 @@ package ISS.functionality.managers;
 import ISS.connection.IssApiCall;
 import ISS.connection.RequestType;
 import ISS.connection.WrongNumberOfArgumentsException;
+import ISS.functionality.userComms.MainWindow;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -34,6 +35,7 @@ public class PositionManager implements Runnable{
         } catch (WrongNumberOfArgumentsException e) {
             e.printStackTrace();
         }
-        /*DatabaseManager.(response);*/
+    
+        MainWindow.getDatabaseManager().savePosition(response);
     }
 }

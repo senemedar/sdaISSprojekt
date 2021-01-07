@@ -8,8 +8,6 @@ import ISS.functionality.managers.PositionManager;
 import ISS.functionality.managers.SpeedManager;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 //import ISS.database.position.entity.*;
 
@@ -17,7 +15,7 @@ public class MainWindow {
 	private static PositionManager positionManager;
 	private static PeopleInSpaceManager peopleInSpaceManager;
 	private static SpeedManager speedManager;
-	private static DatabaseManager dbManager;
+	private static DatabaseManager databaseManager;
 	private static final StringBuilder servicesStatus = new StringBuilder();
 	
 	private static final JFrame passTimesFrame = new JFrame("Czasy przelotów ISS");
@@ -39,12 +37,12 @@ public class MainWindow {
 		
 		exitButton.addActionListener(e -> System.exit(0));
 		issLocationButton.addActionListener(e -> {
-			Position currentPosition = dbManager.getLastPosition();
+			Position currentPosition = databaseManager.getLastPosition();
 			displayPosition(currentPosition);
 		});
 		
 		peopleInSpaceButton.addActionListener(e -> {
-			NumberOfAstronauts numberOfAstronauts = dbManager.getLastNumberOfAstronauts();
+			NumberOfAstronauts numberOfAstronauts = peopleInSpaceManager.getPeopleInSpace();
 			displayAstronauts(numberOfAstronauts);
 		});
 		
@@ -96,7 +94,7 @@ public class MainWindow {
 	}
 	
 	public static void startApplication(PositionManager pm, PeopleInSpaceManager pism, DatabaseManager dbm, SpeedManager sm, boolean positionStatus, boolean pisStatus) {
-		dbManager = dbm;
+		databaseManager = dbm;
 		positionManager = pm;
 		peopleInSpaceManager = pism;
 		speedManager = sm;
@@ -119,5 +117,21 @@ public class MainWindow {
 		frame.pack();
 		frame.setLocation(100,100);
 		frame.setVisible(true);
+	}
+	
+	public static PositionManager getPositionManager() {
+		return positionManager;
+	}
+	
+	public static PeopleInSpaceManager getPeopleInSpaceManager() {
+		return peopleInSpaceManager;
+	}
+	
+	public static SpeedManager getSpeedManager() {
+		return speedManager;
+	}
+	
+	public static DatabaseManager getDatabaseManager() {
+		return databaseManager;
 	}
 }

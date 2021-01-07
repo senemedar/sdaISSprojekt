@@ -2,13 +2,11 @@ package ISS.functionality.managers;
 
 import ISS.database.position.entity.Position;
 import ISS.functionality.functions.Maths;
+import ISS.functionality.userComms.MainWindow;
 
 public class SpeedManager {
-
-    final DatabaseManager dbManager = new DatabaseManager();
-
     public double getSpeed(){
-        Position[] issPositions = dbManager.getTwoLastPositions();
+        Position[] issPositions = MainWindow.getDatabaseManager().getTwoLastPositions();
 
         double lat1 = issPositions[0].getLatitude(); //18.0200;
         double lat2 = issPositions[1].getLatitude(); //18.2896;
@@ -19,5 +17,4 @@ public class SpeedManager {
 
         return Maths.calculateSpeed(lat1,lon1,lat2,lon2,timestamp1,timestamp2);
     }
-
 }
