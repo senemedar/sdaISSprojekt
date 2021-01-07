@@ -7,8 +7,6 @@ import ISS.database.position.daoimpl.PositionDaoImpl;
 import ISS.database.position.entity.Position;
 import ISS.json.mapper.JsonMapper;
 
-import java.time.*;
-
 public class DatabaseManager {
 
     JsonMapper<Position> positionMapper = new JsonMapper<>();

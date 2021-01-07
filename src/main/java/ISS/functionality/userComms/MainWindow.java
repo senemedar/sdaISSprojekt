@@ -9,15 +9,15 @@ import javax.swing.*;
 import java.util.Arrays;
 
 public class MainWindow {
-	private static PositionManager positionManager;
 	private static PeopleInSpaceManager peopleInSpaceManager;
 	private static SpeedManager speedManager;
 	private static DatabaseManager databaseManager;
 	private static ISSPassesManager issPassesManager;
 	private static final StringBuilder servicesStatus = new StringBuilder();
-	
+
 	private static final JFrame passTimesFrame = new JFrame("Czasy przelotów ISS");
 	private final PassTimes passTimesWindow = new PassTimes();
+	
 	private JPanel mainContainer;
 	private JButton issLocationButton;
 	private JButton peopleInSpaceButton;
@@ -45,8 +45,6 @@ public class MainWindow {
 		passTimesButton.addActionListener(e -> {
 			passTimesFrame.setVisible(true);
 			passTimesFrame.transferFocus();
-			
-			
 		});
 		
 		button_showSpeed.addActionListener(e -> {
@@ -99,9 +97,9 @@ public class MainWindow {
 	public static void startApplication() {
 		databaseManager = new DatabaseManager();
 		speedManager = new SpeedManager();
-		positionManager = new PositionManager();
 		peopleInSpaceManager = new PeopleInSpaceManager();
 		issPassesManager = new ISSPassesManager();
+		PositionManager positionManager = new PositionManager();
 		
 		boolean positionStatus = positionManager.startIssPositionQuery();
 		boolean peopleInSpaceStatus = peopleInSpaceManager.startIssPositionQuery();
@@ -125,19 +123,7 @@ public class MainWindow {
 		frame.setLocation(100,100);
 		frame.setVisible(true);
 	}
-	
-	public static PositionManager getPositionManager() {
-		return positionManager;
-	}
-	
-	public static PeopleInSpaceManager getPeopleInSpaceManager() {
-		return peopleInSpaceManager;
-	}
-	
-	public static SpeedManager getSpeedManager() {
-		return speedManager;
-	}
-	
+
 	public static DatabaseManager getDatabaseManager() {
 		return databaseManager;
 	}
@@ -145,6 +131,4 @@ public class MainWindow {
 	public static ISSPassesManager getIssPassesManager() {
 		return issPassesManager;
 	}
-	
-	
 }

@@ -3,11 +3,8 @@ package ISS.database.position.daoimpl;
 import ISS.database.dao.Dao;
 import ISS.database.position.entity.Position;
 import ISS.database.utils.HibernateUtils;
-import ISS.json.mapper.JsonMapper;
 import org.hibernate.Session;
-
 import javax.persistence.NoResultException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class PositionDaoImpl implements Dao<Position> {
@@ -34,9 +31,7 @@ public class PositionDaoImpl implements Dao<Position> {
                 .getCurrentSession();
         session.beginTransaction();
 
-        Position position = null;
-
-        position = session
+        Position position = session
                 .createQuery("from Position order by timestamp desc",Position.class)
                 .getResultList()
                 .get(count - 1);
@@ -80,7 +75,7 @@ public class PositionDaoImpl implements Dao<Position> {
                 .getCurrentSession();
         session.beginTransaction();
 
-        List<Position> resultList = new ArrayList<>();
+        List<Position> resultList;
 
         resultList = session
                 .createQuery("from Position",Position.class)

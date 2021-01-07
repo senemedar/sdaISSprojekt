@@ -1,15 +1,10 @@
 package ISS.functionality.functions;
 
-import ISS.database.position.entity.Position;
-import ISS.functionality.managers.DatabaseManager;
-
 public class Maths {
-
-
     public static double calculateSpeed(double lat1, double lon1,double lat2, double lon2, long timestamp1, long timestamp2){
         //Formuła Haversine - Haversine formula Formuła Haversine - https://pl.qaz.wiki/wiki/Haversine_formula
 
-        double R = 6_371_000 + 408_000;         // promien ziemi w metrach + orbita ISS w metrach
+        double R = 6_371_000 + 408_000;         // promień ziemi w metrach + orbita ISS w metrach
         double φ1 = lat1 * Math.PI/180;         // φ, λ w radianach
         double φ2 = lat2 * Math.PI/180;         // φ, λ w radianach
         double Δφ = (lat2-lat1) * Math.PI/180;  // φ, λ w radianach
@@ -24,7 +19,6 @@ public class Maths {
         double d = R * c; // d - odległość między dwoma punktami wzdłuż wielkiego koła kuli (odległość sferyczna)
 
         return (d/Math.abs(timestamp1-timestamp2))/1000;
-
     }
 
 

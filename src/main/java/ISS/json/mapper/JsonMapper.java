@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonMapper<T> {
 
-    private ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper = new ObjectMapper();
 
     public JsonMapper(){
 
@@ -14,11 +14,11 @@ public class JsonMapper<T> {
     public T mapJsonToObject(String json,Class<T> tClass){
 
         try {
-            T tObject = mapper.readValue(json,tClass);
-            return tObject;
+            return mapper.readValue(json,tClass);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+        
         return null;
     }
 
@@ -28,7 +28,7 @@ public class JsonMapper<T> {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+        
         return "";
     }
-
 }

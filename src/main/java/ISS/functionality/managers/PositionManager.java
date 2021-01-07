@@ -4,7 +4,6 @@ import ISS.connection.IssApiCall;
 import ISS.connection.RequestType;
 import ISS.connection.WrongNumberOfArgumentsException;
 import ISS.functionality.userComms.MainWindow;
-
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;

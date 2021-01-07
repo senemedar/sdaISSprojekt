@@ -4,9 +4,7 @@ import ISS.connection.IssApiCall;
 import ISS.connection.RequestType;
 import ISS.connection.WrongNumberOfArgumentsException;
 import ISS.database.numberofastronauts.entity.NumberOfAstronauts;
-import ISS.functionality.functions.Main;
 import ISS.functionality.userComms.MainWindow;
-
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;

@@ -2,14 +2,9 @@ package ISS.database.numberofastronauts.daoimpl;
 
 import ISS.database.dao.Dao;
 import ISS.database.numberofastronauts.entity.NumberOfAstronauts;
-import ISS.database.position.entity.Position;
 import ISS.database.utils.HibernateUtils;
-import ISS.json.mapper.JsonMapper;
 import org.hibernate.Session;
-
 import javax.persistence.NoResultException;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public class NumberOfAstronautsDaoImpl implements Dao<NumberOfAstronauts> {
@@ -36,9 +31,7 @@ public class NumberOfAstronautsDaoImpl implements Dao<NumberOfAstronauts> {
                 .getCurrentSession();
         session.beginTransaction();
 
-        NumberOfAstronauts number = null;
-
-        number = session
+        NumberOfAstronauts number = session
                 .createQuery("from NumberOfAstronauts order by timestamp desc",NumberOfAstronauts.class)
                 .getResultList()
                 .get(count - 1);
@@ -81,7 +74,7 @@ public class NumberOfAstronautsDaoImpl implements Dao<NumberOfAstronauts> {
                 .getCurrentSession();
         session.beginTransaction();
 
-        List<NumberOfAstronauts> resultList = new ArrayList<>();
+        List<NumberOfAstronauts> resultList;
 
         resultList = session
                 .createQuery("from NumberOfAstronauts",NumberOfAstronauts.class)
@@ -90,7 +83,6 @@ public class NumberOfAstronautsDaoImpl implements Dao<NumberOfAstronauts> {
         session.close();
 
         return resultList;
-
     }
 
     @Override

@@ -1,8 +1,6 @@
 package ISS.functionality.userComms;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class PassTimes {
 	private MainWindow mainWindow;
@@ -22,22 +20,14 @@ public class PassTimes {
 	private static String passNo;
 	
 	public PassTimes() {
-		button_OK.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				latitude = textField_latitude.getText();
-				longitude = textField_longitude.getText();
-				passNo = textField_PassNo.getText();
-				if (latitude.equals("") || longitude.equals("") || passNo.equals(""))
-					label_validator.setText("Musisz wypełnić wszystkie pola!");
-				else
-					mainWindow.closeWindow();
-//
-//				MainWindow.getIssPassesManager().getPasses(
-//						Double.parseDouble(latitude),
-//						Double.parseDouble(longitude),
-//						Integer.parseInt(passNo));
-			}
+		button_OK.addActionListener(e -> {
+			latitude = textField_latitude.getText();
+			longitude = textField_longitude.getText();
+			passNo = textField_PassNo.getText();
+			if (latitude.equals("") || longitude.equals("") || passNo.equals(""))
+				label_validator.setText("Musisz wypełnić wszystkie pola!");
+			else
+				mainWindow.closeWindow();
 		});
 	}
 	

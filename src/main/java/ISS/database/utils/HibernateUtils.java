@@ -35,7 +35,4 @@ public class HibernateUtils {
     public org.hibernate.SessionFactory getSessionFactory(){
         return sessionFactory;
     }
-
-
-
 }
