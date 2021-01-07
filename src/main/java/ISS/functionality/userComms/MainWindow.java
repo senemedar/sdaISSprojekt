@@ -52,7 +52,9 @@ public class MainWindow {
 		button_showSpeed.addActionListener(e -> {
 			double currentSpeed = speedManager.getSpeed();
 			
-			outputPane.setText(String.valueOf(currentSpeed));
+			outputPane.setText(String.format(
+					"Obecna prędkość stacji kosmicznej to: %.2f km/s", currentSpeed)
+			);
 		});
 	}
 	
