@@ -13,15 +13,6 @@ import ISS.json.mapper.JsonMapper;
 
 public class Main {
 	public static void main(String[] args) {
-
-		DatabaseManager dbManager = new DatabaseManager();
-		SpeedManager speedManager = new SpeedManager();
-		PositionManager positionManager = new PositionManager();
-		PeopleInSpaceManager pisManager = new PeopleInSpaceManager();
-
-		boolean positionStatus = positionManager.startIssPositionQuery();
-		boolean peopleInSpaceStatus = pisManager.startIssPositionQuery();
-
-		MainWindow.startApplication(positionManager, pisManager, dbManager, speedManager, positionStatus, peopleInSpaceStatus);
+		MainWindow.startApplication();
 	}
 }

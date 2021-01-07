@@ -27,9 +27,4 @@ public class ISSPassesManager {
 
         return ISSPasses;
     }
-
-
-
-
-
 }

@@ -9,8 +9,6 @@ import ISS.functionality.managers.SpeedManager;
 
 import javax.swing.*;
 
-//import ISS.database.position.entity.*;
-
 public class MainWindow {
 	private static PositionManager positionManager;
 	private static PeopleInSpaceManager peopleInSpaceManager;
@@ -28,8 +26,6 @@ public class MainWindow {
 	private JTextPane outputPane;
 	private JButton button_showSpeed;
 
-//	private final IssApiCall issApiCall = new IssApiCall();
-	
 	public MainWindow() {
 
 		preparePassTimesWindow();
@@ -93,11 +89,14 @@ public class MainWindow {
 		passTimesWindow.setMainWindow(this);
 	}
 	
-	public static void startApplication(PositionManager pm, PeopleInSpaceManager pism, DatabaseManager dbm, SpeedManager sm, boolean positionStatus, boolean pisStatus) {
-		databaseManager = dbm;
-		positionManager = pm;
-		peopleInSpaceManager = pism;
-		speedManager = sm;
+	public static void startApplication() {
+		databaseManager = new DatabaseManager();
+		speedManager = new SpeedManager();
+		positionManager = new PositionManager();
+		peopleInSpaceManager = new PeopleInSpaceManager();
+		
+		boolean positionStatus = positionManager.startIssPositionQuery();
+		boolean peopleInSpaceStatus = peopleInSpaceManager.startIssPositionQuery();
 		
 		servicesStatus.append("Usługa pobierania pozycji: ");
 		if (positionStatus)
@@ -106,7 +105,7 @@ public class MainWindow {
 			servicesStatus.append("błąd usługi.");
 
 		servicesStatus.append("\nUsługa pobierania ilości astronautów: ");
-		if (pisStatus)
+		if (peopleInSpaceStatus)
 			servicesStatus.append("uruchomiona.");
 		else
 			servicesStatus.append("błąd usługi.");
