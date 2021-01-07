@@ -8,7 +8,6 @@ public class JsonMapper<T> {
     private final ObjectMapper mapper = new ObjectMapper();
 
     public JsonMapper(){
-
     }
 
     public T mapJsonToObject(String json,Class<T> tClass){
