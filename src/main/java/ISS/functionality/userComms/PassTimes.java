@@ -17,9 +17,9 @@ public class PassTimes {
 	private JTextField textField_PassNo;
 	private JButton button_OK;
 	private JLabel label_validator;
-	private String latitude;
-	private String longitude;
-	private String passNo;
+	private static String latitude;
+	private static String longitude;
+	private static String passNo;
 	
 	public PassTimes() {
 		button_OK.addActionListener(new ActionListener() {
@@ -28,24 +28,28 @@ public class PassTimes {
 				latitude = textField_latitude.getText();
 				longitude = textField_longitude.getText();
 				passNo = textField_PassNo.getText();
-				System.out.println(latitude != null);
 				if (latitude.equals("") || longitude.equals("") || passNo.equals(""))
 					label_validator.setText("Musisz wypełnić wszystkie pola!");
 				else
 					mainWindow.closeWindow();
+//
+//				MainWindow.getIssPassesManager().getPasses(
+//						Double.parseDouble(latitude),
+//						Double.parseDouble(longitude),
+//						Integer.parseInt(passNo));
 			}
 		});
 	}
 	
-	public String getLatitude() {
+	public static String getLatitude() {
 		return latitude;
 	}
 	
-	public String getLongitude() {
+	public static String getLongitude() {
 		return longitude;
 	}
 	
-	public String getPassNo() {
+	public static String getPassNo() {
 		return passNo;
 	}
 	

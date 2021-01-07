@@ -7,6 +7,8 @@ import ISS.database.position.daoimpl.PositionDaoImpl;
 import ISS.database.position.entity.Position;
 import ISS.json.mapper.JsonMapper;
 
+import java.time.*;
+
 public class DatabaseManager {
 
     JsonMapper<Position> positionMapper = new JsonMapper<>();
@@ -33,7 +35,8 @@ public class DatabaseManager {
     }
 
     public void saveNumberOfAstronauts(String json){
-        NumberOfAstronauts number = numberOfAstronautsMapper.mapJsonToObject(json,NumberOfAstronauts.class);
+        NumberOfAstronauts number = numberOfAstronautsMapper.mapJsonToObject(json, NumberOfAstronauts.class);
+        number.setTimestamp(System.currentTimeMillis() / 1000L);
         numberOfAstronautsDao.save(number);
     }
 

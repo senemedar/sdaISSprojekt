@@ -2,18 +2,18 @@ package ISS.functionality.userComms;
 
 import ISS.database.numberofastronauts.entity.NumberOfAstronauts;
 import ISS.database.position.entity.Position;
-import ISS.functionality.managers.DatabaseManager;
-import ISS.functionality.managers.PeopleInSpaceManager;
-import ISS.functionality.managers.PositionManager;
-import ISS.functionality.managers.SpeedManager;
+import ISS.functionality.isspasses.ISSPass;
+import ISS.functionality.managers.*;
 
 import javax.swing.*;
+import java.util.Arrays;
 
 public class MainWindow {
 	private static PositionManager positionManager;
 	private static PeopleInSpaceManager peopleInSpaceManager;
 	private static SpeedManager speedManager;
 	private static DatabaseManager databaseManager;
+	private static ISSPassesManager issPassesManager;
 	private static final StringBuilder servicesStatus = new StringBuilder();
 	
 	private static final JFrame passTimesFrame = new JFrame("Czasy przelotów ISS");
@@ -45,26 +45,20 @@ public class MainWindow {
 		passTimesButton.addActionListener(e -> {
 			passTimesFrame.setVisible(true);
 			passTimesFrame.transferFocus();
+			
+			
 		});
 		
 		button_showSpeed.addActionListener(e -> {
 			double currentSpeed = speedManager.getSpeed();
+			
 			outputPane.setText(String.valueOf(currentSpeed));
 		});
 	}
 	
 	public void closeWindow() {
 		passTimesFrame.setVisible(false);
-		calculatePassTimes();
-	}
-	
-	private void calculatePassTimes() {
-		Double latitude = Double.parseDouble(passTimesWindow.getLatitude());
-		Double longitude = Double.parseDouble(passTimesWindow.getLongitude());
-		Integer passNo = Integer.parseInt(passTimesWindow.getPassNo());
-		System.out.println(latitude);
-		System.out.println(longitude);
-		System.out.println(passNo);
+		displayPassTimes();
 	}
 
 	private void displayPosition(Position position) {
@@ -80,6 +74,17 @@ public class MainWindow {
 				
 		outputPane.setText(PiS);
 	}
+
+	private void displayPassTimes() {
+		String PiS = "Przeloty dla zadanych parametrów: \n";
+		
+		ISSPass[] issPassesArray = MainWindow.getIssPassesManager().getPasses(
+				Double.parseDouble(PassTimes.getLatitude()),
+				Double.parseDouble(PassTimes.getLongitude()),
+				Integer.parseInt(PassTimes.getPassNo()));
+				
+		outputPane.setText(PiS + Arrays.toString(issPassesArray));
+	}
 	
 	private void preparePassTimesWindow() {
 		passTimesFrame.setContentPane(passTimesWindow.getMainContainer());
@@ -94,6 +99,7 @@ public class MainWindow {
 		speedManager = new SpeedManager();
 		positionManager = new PositionManager();
 		peopleInSpaceManager = new PeopleInSpaceManager();
+		issPassesManager = new ISSPassesManager();
 		
 		boolean positionStatus = positionManager.startIssPositionQuery();
 		boolean peopleInSpaceStatus = peopleInSpaceManager.startIssPositionQuery();
@@ -133,4 +139,10 @@ public class MainWindow {
 	public static DatabaseManager getDatabaseManager() {
 		return databaseManager;
 	}
+	
+	public static ISSPassesManager getIssPassesManager() {
+		return issPassesManager;
+	}
+	
+	
 }
