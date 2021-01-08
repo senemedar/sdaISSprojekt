@@ -79,14 +79,29 @@ public class MainWindow {
 	}
 
 	private void displayPassTimes() {
-		String PiS = "Przeloty dla zadanych parametrów: \n";
+		String passTimesString = "Przeloty dla zadanych parametrów: \n";
 		
 		ISSPass[] issPassesArray = MainWindow.getIssPassesManager().getPasses(
 				Double.parseDouble(PassTimes.getLatitude()),
 				Double.parseDouble(PassTimes.getLongitude()),
 				Integer.parseInt(PassTimes.getPassNo()));
 				
-		outputPane.setText(PiS + Arrays.toString(issPassesArray));
+		int count = 1;
+		for (ISSPass pass : issPassesArray) {
+			SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy, HH:mm");
+			String formattedDate = sdf.format(pass.getRisetime()*1000L);
+			int duration = pass.getDuration()/60;
+			passTimesString += "\nPrzelot " + count + ":\n" +
+					formattedDate + ", czas trwania: " +
+					duration + " minut";
+			
+			if (duration < 5)
+				passTimesString += "y";
+			
+			count++;
+		}
+		
+		outputPane.setText(passTimesString);
 	}
 	
 	private void preparePassTimesWindow() {
