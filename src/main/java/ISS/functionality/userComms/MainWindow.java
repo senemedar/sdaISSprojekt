@@ -6,6 +6,7 @@ import ISS.functionality.isspasses.ISSPass;
 import ISS.functionality.managers.*;
 
 import javax.swing.*;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 public class MainWindow {
@@ -62,7 +63,9 @@ public class MainWindow {
 	}
 
 	private void displayPosition(Position position) {
-		String issPosition = "Bieżąca pozycja stacji to:" +
+		SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy, HH:mm");
+		String formattedDate = sdf.format(position.getTimestamp()*1000L);
+		String issPosition = "Pozycja stacji na dzień " + formattedDate + ":" +
 				"\nSzerokość geograficzna: " + position.getLatitude() +
 				"\nDługość geograficzna: " + position.getLongitude();
 		outputPane.setText(issPosition);
